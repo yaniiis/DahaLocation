@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site Professionnel - One Page</title>
+  
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <!-- CSS externe -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <ul>
+      <li><a href="#home">Accueil</a></li>
+      <li><a href="#about">À propos</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Sections -->
+  <section id="home">
+    <h1>Bienvenue</h1>
+    <p>Découvrez notre site professionnel conçu pour mettre en valeur vos projets et services.</p>
+  </section>
+
+  <section id="about">
+    <h2>À propos</h2>
+    <p>Notre mission est de fournir des solutions modernes et efficaces pour répondre aux besoins de nos clients. 
+       Nous combinons expertise, innovation et professionnalisme.</p>
+  </section>
+
+  <section id="services">
+    <h2>Nos Services</h2>
+    <p>Nous proposons un large éventail de services allant du conseil à la mise en œuvre technique, 
+       afin de vous accompagner dans vos projets digitaux.</p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Vous pouvez nous retrouver à l'adresse suivante :</p>
+    <div id="map"></div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Mon Site Professionnel - Tous droits réservés</p>
+  </footer>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    // Initialisation de la carte
+    var map = L.map('map').setView([48.8566, 2.3522], 13); // Paris par défaut
+
+    // Fond de carte
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Marqueur
+    L.marker([48.8566, 2.3522]).addTo(map)
+      .bindPopup("Nous sommes ici !")
+      .openPopup();
+  </script>
+
+</body>
+</html>
