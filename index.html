@@ -3,73 +3,278 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Site Professionnel - One Page</title>
-  
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
-
-  <!-- CSS externe -->
+  <title>DahaLocation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="style.css">
-
-  <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+  <style>
+    /* Navbar effet scroll */
+    .navbar {
+      transition: all 0.3s ease;
+      background: transparent;
+    }
+    .navbar.scrolled {
+      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.7);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    }
+    .navbar.scrolled h1, 
+    .navbar.scrolled a {
+      color: #1e3a8a !important; /* Bleu foncé */
+    }
+    /* Animation fade-up */
+      .animate-fadeUp {
+        animation: fadeUp 0.8s ease forwards;
+      }
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+  </style>
+
+  <script>
+    // Animation au scroll
+    const serviceCards = document.querySelectorAll('.service-card');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-fadeUp');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    serviceCards.forEach(card => observer.observe(card));
+  </script>
+  
 </head>
-<body>
+<body class="font-sans bg-white text-gray-800">
 
   <!-- Navigation -->
-  <nav>
-    <ul>
-      <li><a href="#home">Accueil</a></li>
-      <li><a href="#about">À propos</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+  <nav class="navbar fixed w-full z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
+      <h1 class="text-2xl font-bold text-white">DahaLocation</h1>
+      <ul class="flex space-x-6">
+        <li><a href="#home" class="hover:text-blue-400 transition text-white">Accueil</a></li>
+        <li><a href="#cars" class="hover:text-blue-400 transition text-white">Voitures</a></li>
+        <li><a href="#about" class="hover:text-blue-400 transition text-white">À propos</a></li>
+        <li><a href="#services" class="hover:text-blue-400 transition text-white">Services</a></li>
+        <li><a href="#contact" class="hover:text-blue-400 transition text-white">Contact</a></li>
+      </ul>
+    </div>
   </nav>
 
-  <!-- Sections -->
-  <section id="home">
-    <h1>Bienvenue</h1>
-    <p>Découvrez notre site professionnel conçu pour mettre en valeur vos projets et services.</p>
+  <!-- Accueil -->
+  <section id="home" class="relative h-screen flex flex-col justify-center items-center text-center text-white px-4">
+    
+    <!-- Image de fond -->
+    <div class="absolute inset-0">
+      <img src="images/accueil.png" alt="Voiture auto-école" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-black/60"></div> <!-- overlay assombrissant -->
+    </div>
+
+    <!-- Contenu -->
+    <div class="relative z-10 fade-in">
+      <h2 class="text-4xl md:text-6xl font-bold mb-6">Location de Voitures pour Auto-Écoles</h2>
+      <p class="max-w-2xl mb-8 text-lg opacity-90">
+        Des véhicules modernes, fiables et équipés de double-commande pour accompagner vos élèves en toute sécurité.
+      </p>
+      <div class="flex flex-col md:flex-row gap-4 justify-center">
+        <a href="#services" class="bg-white text-blue-700 px-8 py-3 rounded-full font-semibold shadow-lg hover:bg-gray-200 transition">
+          Découvrir nos services
+        </a>
+        <a href="#cars" class="bg-blue-600 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:bg-blue-700 transition">
+          Voir nos voitures
+        </a>
+      </div>
+      <!-- Preuve sociale -->
+    </div>
   </section>
 
-  <section id="about">
-    <h2>À propos</h2>
-    <p>Notre mission est de fournir des solutions modernes et efficaces pour répondre aux besoins de nos clients. 
-       Nous combinons expertise, innovation et professionnalisme.</p>
+  <!-- Voitures avec carrousel -->
+<section id="cars" class="py-24 bg-gray-100 flex flex-col justify-center items-center text-center">
+  <h2 class="text-3xl font-bold mb-12 text-blue-700">Nos Voitures</h2>
+
+  <div class="swiper car-slider max-w-6xl w-full">
+    <div class="swiper-wrapper">
+      <!-- Slide 1 -->
+      <div class="swiper-slide">
+        <div class="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition transform hover:scale-105 p-6">
+          <img src="images/voiture_une.png" class="rounded-2xl w-full h-72 object-cover mb-4" alt="Renault Clio">
+          <h3 class="font-bold text-2xl text-blue-600">Renault Clio</h3>
+          <p class="opacity-80 mt-2">Économique et fiable pour la conduite en ville.</p>
+        </div>
+      </div>
+      <!-- Slide 2 -->
+      <div class="swiper-slide">
+        <div class="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition transform hover:scale-105 p-6">
+          <img src="images/voiture_deux.png" class="rounded-2xl w-full h-72 object-cover mb-4" alt="Peugeot 208">
+          <h3 class="font-bold text-2xl text-blue-600">Peugeot 208</h3>
+          <p class="opacity-80 mt-2">Confortable et moderne, parfaite pour l’apprentissage.</p>
+        </div>
+      </div>
+      <!-- Slide 3 -->
+      <div class="swiper-slide">
+        <div class="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition transform hover:scale-105 p-6">
+          <img src="images/voiture_trois.png" class="rounded-2xl w-full h-72 object-cover mb-4" alt="Citroën C3">
+          <h3 class="font-bold text-2xl text-blue-600">Citroën C3</h3>
+          <p class="opacity-80 mt-2">Compacte et polyvalente pour toutes situations.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pagination + navigation -->
+    <div class="swiper-pagination !bottom-0 mt-6"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  </div>
+</section>
+
+
+  <!-- À propos -->
+  <section id="about" class="py-24 flex flex-col justify-center items-center text-center">
+    <h2 class="text-3xl font-bold mb-6 text-blue-700">À propos</h2>
+    <p class="max-w-3xl mx-auto text-lg opacity-90">Nous proposons des voitures récentes, parfaitement entretenues et équipées de double-commande.  
+    Notre mission : accompagner les auto-écoles avec un parc automobile fiable et moderne, afin de faciliter l’apprentissage des futurs conducteurs.</p>
   </section>
 
-  <section id="services">
-    <h2>Nos Services</h2>
-    <p>Nous proposons un large éventail de services allant du conseil à la mise en œuvre technique, 
-       afin de vous accompagner dans vos projets digitaux.</p>
+<!-- Services -->
+<section id="services" class="py-24 bg-gray-100 flex flex-col justify-center items-center text-center">
+  <h2 class="text-3xl font-bold mb-12 text-blue-700">Nos Services</h2>
+  <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto px-4">
+    
+    <!-- Service 1 -->
+    <div class="service-card bg-white p-8 rounded-2xl shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl">
+      <i class="fas fa-calendar-alt text-blue-600 text-4xl mb-4"></i>
+      <h3 class="font-bold text-xl mb-3 text-blue-600">Location longue durée</h3>
+      <p class="opacity-80">Solutions flexibles pour équiper durablement votre auto-école.</p>
+    </div>
+
+    <!-- Service 2 -->
+    <div class="service-card bg-white p-8 rounded-2xl shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl">
+      <i class="fas fa-clock text-blue-600 text-4xl mb-4"></i>
+      <h3 class="font-bold text-xl mb-3 text-blue-600">Location courte durée</h3>
+      <p class="opacity-80">Idéal en cas de panne ou de besoin ponctuel.</p>
+    </div>
+
+    <!-- Service 3 -->
+    <div class="service-card bg-white p-8 rounded-2xl shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl">
+      <i class="fas fa-tools text-blue-600 text-4xl mb-4"></i>
+      <h3 class="font-bold text-xl mb-3 text-blue-600">Entretien inclus</h3>
+      <p class="opacity-80">Un suivi rigoureux de tous nos véhicules.</p>
+    </div>
+
+    <!-- Service 4 -->
+    <div class="service-card bg-white p-8 rounded-2xl shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl">
+      <i class="fas fa-headset text-blue-600 text-4xl mb-4"></i>
+      <h3 class="font-bold text-xl mb-3 text-blue-600">Assistance 24/7</h3>
+      <p class="opacity-80">Un service disponible en cas d’imprévu.</p>
+    </div>
+
+  </div>
+</section>
+
+
+  <!-- Contact -->
+  <section id="contact" class="py-24 flex flex-col justify-center items-center text-center bg-gray-50">
+    <h2 class="text-3xl font-bold mb-12 text-blue-700">Contact</h2>
+    <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 px-4 items-start">
+      <!-- Carte -->
+      <div id="map" class="rounded-2xl shadow h-72 "></div>
+      <!-- Infos -->
+      <div class="bg-white p-6 rounded-2xl shadow text-left space-y-6">
+        <h3 class="text-xl font-bold mb-4 text-blue-600 flex items-center gap-2 text-center">
+          <i class="fas fa-info-circle"></i> Informations
+        </h3>
+        <p class="flex items-center gap-3">
+          <i class="fas fa-map-marker-alt text-blue-600 text-xl"></i>
+          <span>12 rue de la Conduite, 75000 Paris</span>
+        </p>
+        <p class="flex items-center gap-3">
+          <i class="fas fa-phone text-blue-600 text-xl"></i>
+          <a href="tel:+33123456789" class="text-blue-600 font-semibold">+33 1 23 45 67 89</a>
+        </p>
+        <p class="flex items-center gap-3">
+          <i class="fas fa-envelope text-blue-600 text-xl"></i>
+          <a href="mailto:contact@dahalocation.com" class="text-blue-600 font-semibold">contact@dahalocation.com</a>
+        </p>
+      </div>
+      <!-- Horaires -->
+      <div class="bg-white p-6 rounded-2xl shadow text-left">
+        <h3 class="text-xl font-bold mb-4 text-blue-600 flex items-center gap-2 text-center">
+          <i class="fas fa-clock"></i> Horaires
+        </h3>
+        <ul class="space-y-2 opacity-80">
+          <li>Lundi : Fermé</li>
+          <li>Mardi : 10h-13h / 14h-18h</li>
+          <li>Mercredi : 10h-13h / 14h-18h</li>
+          <li>Jeudi : 10h-13h / 14h-18h</li>
+          <li>Vendredi : 10h-13h / 15h-18h</li>
+          <li>Samedi : 09h-12h / 13h-16h</li>
+        </ul>
+      </div>
+    </div>
   </section>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Vous pouvez nous retrouver à l'adresse suivante :</p>
-    <div id="map"></div>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 Mon Site Professionnel - Tous droits réservés</p>
+  <!-- Footer -->
+  <footer class="bg-blue-600 text-white text-center py-6">
+    <p>&copy; 2025 DahaLocation - Tous droits réservés</p>
   </footer>
 
   <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script>
-    // Initialisation de la carte
-    var map = L.map('map').setView([48.8566, 2.3522], 13); // Paris par défaut
-
-    // Fond de carte
+    var map = L.map('map').setView([48.7351, 1.3696], 14);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
-    // Marqueur
-    L.marker([48.8566, 2.3522]).addTo(map)
-      .bindPopup("Nous sommes ici !")
+    L.marker([48.7351, 1.3696]).addTo(map)
+      .bindPopup("DahaLocation - Paris")
       .openPopup();
   </script>
 
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+  <script>
+const swiper = new Swiper('.car-slider', {
+  loop: true,
+  grabCursor: true,
+  spaceBetween: 30,
+  slidesPerView: 1,
+  autoplay: { delay: 3000, disableOnInteraction: false },
+  pagination: { 
+    el: '.swiper-pagination', 
+    clickable: true, 
+    dynamicBullets: true 
+  },
+  navigation: { 
+    nextEl: '.swiper-button-next', 
+    prevEl: '.swiper-button-prev' 
+  },
+  effect: "fade",
+  fadeEffect: { crossFade: true },
+  breakpoints: {
+    768: { slidesPerView: 1 },
+    1024: { slidesPerView: 1 }
+  },
+});
+
+
+    // Effet scroll navbar
+    window.addEventListener("scroll", function() {
+      const nav = document.querySelector(".navbar");
+      nav.classList.toggle("scrolled", window.scrollY > 50);
+    });
+  </script>
 </body>
 </html>
