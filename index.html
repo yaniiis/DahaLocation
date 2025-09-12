@@ -43,6 +43,15 @@
   </style>
 
   <script>
+
+    // Toggle menu mobile
+    const menuToggle = document.getElementById("menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    menuToggle.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+
     // Animation au scroll
     const serviceCards = document.querySelectorAll('.service-card');
     const observer = new IntersectionObserver(entries => {
@@ -59,19 +68,35 @@
 </head>
 <body class="font-sans bg-white text-gray-800">
 
-  <!-- Navigation -->
-  <nav class="navbar fixed w-full z-50">
-    <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
-      <h1 class="text-2xl font-bold text-white">DahaLocation</h1>
-      <ul class="flex space-x-6">
-        <li><a href="#home" class="hover:text-blue-400 transition text-white">Accueil</a></li>
-        <li><a href="#cars" class="hover:text-blue-400 transition text-white">Voitures</a></li>
-        <li><a href="#about" class="hover:text-blue-400 transition text-white">À propos</a></li>
-        <li><a href="#services" class="hover:text-blue-400 transition text-white">Services</a></li>
-        <li><a href="#contact" class="hover:text-blue-400 transition text-white">Contact</a></li>
-      </ul>
-    </div>
-  </nav>
+<!-- Navigation -->
+<nav class="navbar fixed w-full z-50">
+  <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
+    <h1 class="text-2xl font-bold text-white">DahaLocation</h1>
+
+    <!-- Bouton hamburger (mobile) -->
+    <button id="menu-toggle" class="md:hidden text-white text-3xl focus:outline-none">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Menu desktop -->
+    <ul class="hidden md:flex space-x-6">
+      <li><a href="#home" class="hover:text-blue-400 transition text-white">Accueil</a></li>
+      <li><a href="#cars" class="hover:text-blue-400 transition text-white">Voitures</a></li>
+      <li><a href="#about" class="hover:text-blue-400 transition text-white">À propos</a></li>
+      <li><a href="#services" class="hover:text-blue-400 transition text-white">Services</a></li>
+      <li><a href="#contact" class="hover:text-blue-400 transition text-white">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- Menu mobile (caché par défaut) -->
+  <div id="mobile-menu" class="hidden md:hidden bg-white text-blue-700 flex flex-col space-y-4 px-6 py-4 shadow-lg">
+    <a href="#home" class="hover:text-blue-400">Accueil</a>
+    <a href="#cars" class="hover:text-blue-400">Voitures</a>
+    <a href="#about" class="hover:text-blue-400">À propos</a>
+    <a href="#services" class="hover:text-blue-400">Services</a>
+    <a href="#contact" class="hover:text-blue-400">Contact</a>
+  </div>
+</nav>
 
   <!-- Accueil -->
   <section id="home" class="relative h-screen flex flex-col justify-center items-center text-center text-white px-4">
