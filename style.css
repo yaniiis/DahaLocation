@@ -135,6 +135,18 @@ footer {
   #map {
     height: 250px;
   }
+    .swiper {
+    height: auto !important; /* suit la hauteur du contenu */
+  }
+
+  .swiper-slide img {
+    height: auto; /* ajuste l'image à la largeur */
+    max-height: 300px; /* limite pour éviter que ça devienne trop grand */
+  }
+
+  .swiper-pagination {
+    margin-top: 10px !important; /* rapproche les bullets du texte */
+  }
 }
 .fade-in {
   opacity: 0;
