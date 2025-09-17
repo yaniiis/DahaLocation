@@ -169,3 +169,33 @@ footer {
 #mobile-menu {
   transition: all 0.3s ease-in-out;
 }
+
+
+/* Navbar effet scroll */
+.navbar {
+transition: all 0.3s ease;
+background: transparent;
+}
+.navbar.scrolled {
+backdrop-filter: blur(12px);
+background: rgba(255, 255, 255, 0.7);
+box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+}
+.navbar.scrolled h1, 
+.navbar.scrolled a {
+color: #1e3a8a !important; /* Bleu foncé */
+}
+/* Animation fade-up */
+.animate-fadeUp {
+  animation: fadeUp 0.8s ease forwards;
+}
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

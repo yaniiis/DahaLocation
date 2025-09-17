@@ -3,44 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DahaLocation</title>
+  <title>Drive & Go Solutions</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <!-- Swiper CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
-  <style>
-    /* Navbar effet scroll */
-    .navbar {
-      transition: all 0.3s ease;
-      background: transparent;
-    }
-    .navbar.scrolled {
-      backdrop-filter: blur(12px);
-      background: rgba(255, 255, 255, 0.7);
-      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
-    }
-    .navbar.scrolled h1, 
-    .navbar.scrolled a {
-      color: #1e3a8a !important; /* Bleu foncé */
-    }
-    /* Animation fade-up */
-      .animate-fadeUp {
-        animation: fadeUp 0.8s ease forwards;
-      }
-      @keyframes fadeUp {
-        from {
-          opacity: 0;
-          transform: translateY(30px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-  </style>
 
   <script>
 
@@ -71,7 +40,7 @@
 <!-- Navigation -->
 <nav class="navbar fixed w-full z-50">
   <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
-    <h1 class="text-2xl font-bold text-white">DahaLocation</h1>
+  <img src="images/logo.png" alt="Logo" class="h-12 w-auto">
 
     <!-- Bouton hamburger (mobile) -->
     <button id="menu-toggle" class="md:hidden text-white text-3xl focus:outline-none">
@@ -81,7 +50,7 @@
     <!-- Menu desktop -->
     <ul class="hidden md:flex space-x-6">
       <li><a href="#home" class="hover:text-blue-400 transition text-white">Accueil</a></li>
-      <li><a href="#cars" class="hover:text-blue-400 transition text-white">Voitures</a></li>
+      <li><a href="#cars" class="hover:text-blue-400 transition text-white">Parc</a></li>
       <li><a href="#about" class="hover:text-blue-400 transition text-white">À propos</a></li>
       <li><a href="#services" class="hover:text-blue-400 transition text-white">Services</a></li>
       <li><a href="#contact" class="hover:text-blue-400 transition text-white">Contact</a></li>
@@ -91,7 +60,7 @@
   <!-- Menu mobile (caché par défaut) -->
   <div id="mobile-menu" class="hidden md:hidden bg-white text-blue-700 flex flex-col space-y-4 px-6 py-4 shadow-lg">
     <a href="#home" class="hover:text-blue-400">Accueil</a>
-    <a href="#cars" class="hover:text-blue-400">Voitures</a>
+    <a href="#cars" class="hover:text-blue-400">Parc</a>
     <a href="#about" class="hover:text-blue-400">À propos</a>
     <a href="#services" class="hover:text-blue-400">Services</a>
     <a href="#contact" class="hover:text-blue-400">Contact</a>
@@ -110,15 +79,13 @@
     <!-- Contenu -->
     <div class="relative z-10 fade-in">
       <h2 class="text-4xl md:text-6xl font-bold mb-6">Location de Voitures pour Auto-Écoles</h2>
-      <p class="max-w-2xl mb-8 text-lg opacity-90">
-        Des véhicules modernes, fiables et équipés de double-commande pour accompagner vos élèves en toute sécurité.
-      </p>
+      <p class="max-w-2xl mb-8 text-lg opacity-90" style="font-family: 'Baloo 2', cursive; font-size: 1.5rem">La solution de location sans délai</p>
       <div class="flex flex-col md:flex-row gap-4 justify-center">
         <a href="#services" class="bg-white text-blue-700 px-8 py-3 rounded-full font-semibold shadow-lg hover:bg-gray-200 transition">
           Découvrir nos services
         </a>
         <a href="#cars" class="bg-blue-600 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:bg-blue-700 transition">
-          Voir nos voitures
+          Voir nos véhicules
         </a>
       </div>
       <!-- Preuve sociale -->
@@ -127,7 +94,7 @@
 
   <!-- Voitures avec carrousel -->
 <section id="cars" class="py-24 bg-gray-100 flex flex-col justify-center items-center text-center">
-  <h2 class="text-3xl font-bold mb-12 text-blue-700">Nos Voitures</h2>
+  <h2 class="text-3xl font-bold mb-12 text-blue-700">Parc de véhicules</h2>
 
 <div class="swiper car-slider max-w-6xl w-full h-auto">
     <div class="swiper-wrapper">
@@ -135,24 +102,21 @@
       <div class="swiper-slide">
         <div class="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition ">
           <img src="images/voiture_un.jpg" class="rounded-2xl w-full h-72 object-cover mb-4" alt="Renault Clio">
-          <h3 class="font-bold text-2xl text-blue-600">Renault Clio</h3>
-          <p class="opacity-80 mt-2">Économique et fiable pour la conduite en ville.</p>
+          <h3 class="font-bold text-2xl text-blue-600">Renault Clio V</h3>
         </div>
       </div>
       <!-- Slide 2 -->
       <div class="swiper-slide">
         <div class="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition">
-          <img src="images/voiture_z.jpg" class="rounded-2xl w-full h-72 object-cover mb-4" alt="Peugeot 208">
+          <img src="images/peugeot.jpg" class="rounded-2xl w-full h-72 object-cover mb-4" alt="Peugeot 208">
           <h3 class="font-bold text-2xl text-blue-600">Peugeot 208</h3>
-          <p class="opacity-80 mt-2">Confortable et moderne, parfaite pour l’apprentissage.</p>
         </div>
       </div>
       <!-- Slide 3 -->
       <div class="swiper-slide">
         <div class="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition">
-          <img src="images/voiture_q.jpg" class="rounded-2xl w-full h-72 object-cover mb-4" alt="Citroën C3">
-          <h3 class="font-bold text-2xl text-blue-600">Citroën C3</h3>
-          <p class="opacity-80 mt-2">Compacte et polyvalente pour toutes situations.</p>
+          <img src="images/mini.png" class="rounded-2xl w-full h-72 object-cover mb-4" alt="Citroën C3">
+          <h3 class="font-bold text-2xl text-blue-600">Mini Cooper</h3>
         </div>
       </div>
     </div>
@@ -168,42 +132,100 @@
   <!-- À propos -->
   <section id="about" class="py-24 flex flex-col justify-center items-center text-center">
     <h2 class="text-3xl font-bold mb-6 text-blue-700">À propos</h2>
-    <p class="max-w-3xl mx-auto text-lg opacity-90">Nous proposons des voitures récentes, parfaitement entretenues et équipées de double-commande.  
-    Notre mission : accompagner les auto-écoles avec un parc automobile fiable et moderne, afin de faciliter l’apprentissage des futurs conducteurs.</p>
+    <div class="max-w-3xl mx-auto text-lg opacity-90 space-y-4">
+      <p>Chez <span class="font-semibold text-blue-700">Drive & Go Solutions</span>, nous proposons des solutions de location de véhicules adaptées à tous les professionnels en Île-de-France.</p>
+      <ul class="list-disc text-left pl-6 space-y-2">
+        <li><span class="font-semibold">Location courte durée :</span> une réponse immédiate pour vos besoins ponctuels ou urgents.</li>
+        <li><span class="font-semibold">Location longue durée / crédit-bail :</span> une solution flexible et économique pour sécuriser votre activité dans le temps.</li>
+        <li><span class="font-semibold">Service sur mesure :</span> flotte adaptée à vos besoins, y compris des véhicules à double commande pour les auto-écoles.</li>
+      </ul>
+      <p class="mt-4">Notre priorité est simple : vous fournir rapidement le véhicule qu’il vous faut, afin de garantir la continuité de votre activité, sans interruption.</p>
+    </div>
   </section>
+<!-- Activité -->
+<section id="activity" class="relative py-24 bg-gradient-to-br from-blue-50 via-white to-blue-100 overflow-hidden">
+  <!-- Décor en arrière-plan -->
+  <div class="absolute top-0 left-0 w-64 h-64 bg-blue-200 rounded-full blur-3xl opacity-20 -z-10"></div>
+  <div class="absolute bottom-0 right-0 w-72 h-72 bg-blue-300 rounded-full blur-3xl opacity-20 -z-10"></div>
+
+  <div class="max-w-5xl mx-auto text-center px-4">
+    <h2 class="text-4xl md:text-5xl font-extrabold text-blue-700 mb-16 tracking-tight">
+      Notre Activité
+    </h2>
+
+    <div class="grid md:grid-cols-3 gap-12">
+      <!-- Spécialisation -->
+      <div class="group relative bg-white p-10 rounded-3xl shadow-lg hover:shadow-2xl transition duration-500 transform hover:-translate-y-2">
+        <div class="flex justify-center mb-6">
+          <div class="p-4 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 text-white text-3xl shadow-lg group-hover:scale-110 transition">
+            <i class="fas fa-briefcase"></i>
+          </div>
+        </div>
+        <h3 class="text-2xl font-bold text-blue-700 mb-3">Spécialisation</h3>
+        <p class="text-gray-700">Location de véhicules pour professionnels</p>
+      </div>
+
+      <!-- Force -->
+      <div class="group relative bg-white p-10 rounded-3xl shadow-lg hover:shadow-2xl transition duration-500 transform hover:-translate-y-2">
+        <div class="flex justify-center mb-6">
+          <div class="p-4 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 text-white text-3xl shadow-lg group-hover:scale-110 transition">
+            <i class="fas fa-bolt"></i>
+          </div>
+        </div>
+        <h3 class="text-2xl font-bold text-blue-700 mb-3">Force</h3>
+        <p class="text-gray-700">Disponibilité immédiate, sans délai</p>
+      </div>
+
+      <!-- Formules -->
+      <div class="group relative bg-white p-10 rounded-3xl shadow-lg hover:shadow-2xl transition duration-500 transform hover:-translate-y-2">
+        <div class="flex justify-center mb-6">
+          <div class="p-4 rounded-full bg-gradient-to-br from-green-400 to-emerald-600 text-white text-3xl shadow-lg group-hover:scale-110 transition">
+            <i class="fas fa-list-alt"></i>
+          </div>
+        </div>
+        <h3 class="text-2xl font-bold text-blue-700 mb-3">Formules</h3>
+        <ul class="space-y-2 text-gray-700">
+          <li>Location courte durée</li>
+          <li>Location longue durée / crédit-bail</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- Services -->
 <section id="services" class="py-24 bg-gray-100 flex flex-col justify-center items-center text-center">
-  <h2 class="text-3xl font-bold mb-12 text-blue-700">Nos Services</h2>
+  <h2 class="text-3xl font-bold mb-12 text-blue-700">Nos Services inclus</h2>
   <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto px-4">
-    
+        
     <!-- Service 1 -->
     <div class="service-card bg-white p-8 rounded-2xl shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl">
-      <i class="fas fa-calendar-alt text-blue-600 text-4xl mb-4"></i>
-      <h3 class="font-bold text-xl mb-3 text-blue-600">Location longue durée</h3>
-      <p class="opacity-80">Solutions flexibles pour équiper durablement votre auto-école.</p>
+      <i class="fas fa-shield-alt text-blue-600 text-4xl mb-4"></i>
+      <h3 class="font-bold text-xl mb-3 text-blue-600">Assurance</h3>
+      <p class="opacity-80">Protégez votre véhicule en toute sérénité.</p>
     </div>
 
     <!-- Service 2 -->
     <div class="service-card bg-white p-8 rounded-2xl shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl">
-      <i class="fas fa-clock text-blue-600 text-4xl mb-4"></i>
-      <h3 class="font-bold text-xl mb-3 text-blue-600">Location courte durée</h3>
-      <p class="opacity-80">Idéal en cas de panne ou de besoin ponctuel.</p>
+      <i class="fas fa-tools text-blue-600 text-4xl mb-4"></i>
+      <h3 class="font-bold text-xl mb-3 text-blue-600">Entretien</h3>
+      <p class="opacity-80">Gardez votre voiture en parfait état.</p>
     </div>
 
     <!-- Service 3 -->
     <div class="service-card bg-white p-8 rounded-2xl shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl">
-      <i class="fas fa-tools text-blue-600 text-4xl mb-4"></i>
-      <h3 class="font-bold text-xl mb-3 text-blue-600">Entretien inclus</h3>
-      <p class="opacity-80">Un suivi rigoureux de tous nos véhicules.</p>
+      <i class="fas fa-car-crash text-blue-600 text-4xl mb-4"></i>
+      <h3 class="font-bold text-xl mb-3 text-blue-600">Assistance</h3>
+      <p class="opacity-80">Aide rapide en cas de panne ou d’accident.</p>
     </div>
 
     <!-- Service 4 -->
     <div class="service-card bg-white p-8 rounded-2xl shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl">
-      <i class="fas fa-headset text-blue-600 text-4xl mb-4"></i>
-      <h3 class="font-bold text-xl mb-3 text-blue-600">Assistance 24/7</h3>
-      <p class="opacity-80">Un service disponible en cas d’imprévu.</p>
+      <i class="fas fa-bolt text-blue-600 text-4xl mb-4"></i>
+      <h3 class="font-bold text-xl mb-3 text-blue-600">Réactivité</h3>
+      <p class="opacity-80">Interventions rapides 24/7.</p>
     </div>
+
 
   </div>
 </section>
@@ -222,7 +244,7 @@
         </h3>
         <p class="flex items-center gap-3">
           <i class="fas fa-map-marker-alt text-blue-600 text-xl"></i>
-          <span>12 rue de la Conduite, 75000 Paris</span>
+          <span>150 rue Legendre, 75017 Paris</span>
         </p>
         <p class="flex items-center gap-3">
           <i class="fas fa-phone text-blue-600 text-xl"></i>
@@ -252,19 +274,25 @@
 
   <!-- Footer -->
   <footer class="bg-blue-600 text-white text-center py-6">
-    <p>&copy; 2025 DahaLocation - Tous droits réservés</p>
+    <div class="mt-4 text-sm opacity-80">
+      <p><strong>Mentions légales</strong></p>
+      <p>Drive &amp; Go Solutions – SARL au capital de 15 000 €</p>
+      <p>Immatriculée au RCS de Chartres – SIREN : 877 527 051</p>
+      <p>Agrément : E2502800020 – NDA : 24280187628</p>
+    </div>
+    <p>&copy; 2025 Drive & Go Solutions - Tous droits réservés</p>
   </footer>
 
   <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script>
-    var map = L.map('map').setView([48.7351, 1.3696], 14);
+    var map = L.map('map').setView([48.890251, 2.324196], 10);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
 
-    L.marker([48.7351, 1.3696]).addTo(map)
-      .bindPopup("DahaLocation - Paris")
+    L.marker([48.890251, 2.324196]).addTo(map)
+      .bindPopup("Drive & Go Solutions")
       .openPopup();
   </script>
 
