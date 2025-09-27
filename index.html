@@ -69,17 +69,21 @@
 
   <!-- Accueil -->
   <section id="home" class="relative h-screen flex flex-col justify-center items-center text-center text-white px-4">
-    
+
     <!-- Image de fond -->
     <div class="absolute inset-0">
-      <img src="images/accueil.png" alt="Voiture auto-école" class="w-full h-full object-cover">
-      <div class="absolute inset-0 bg-black/60"></div> <!-- overlay assombrissant -->
+      <img src="images/fond.jpg" alt="Voiture auto-école" class="w-full h-full object-cover">
+      <div class="absolute inset-0 bg-black/60"></div>
     </div>
 
-    <!-- Contenu -->
-    <div class="relative z-10 fade-in">
-      <h2 class="text-4xl md:text-6xl font-bold mb-6">Location de Voitures pour Auto-Écoles</h2>
-      <p class="max-w-2xl mb-8 text-lg opacity-90" style="font-family: 'Baloo 2', cursive; font-size: 1.5rem">La solution de location sans délai</p>
+    <!-- Contenu avec animation -->
+    <div class="relative z-10 home-animate">
+      <h2 class="text-4xl md:text-6xl font-bold mb-6 text-white">Location de Voitures pour Auto-Écoles</h2>
+      <p class="max-w-2xl mx-auto mb-8 text-lg opacity-90 text-center" 
+        style="font-family: 'Baloo 2', cursive; font-size: 1.5rem">
+        La solution de location sans délai
+      </p>
+
       <div class="flex flex-col md:flex-row gap-4 justify-center">
         <a href="#services" class="bg-white text-blue-700 px-8 py-3 rounded-full font-semibold shadow-lg hover:bg-gray-200 transition">
           Découvrir nos services
@@ -87,61 +91,114 @@
         <a href="#cars" class="bg-blue-600 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:bg-blue-700 transition">
           Voir nos véhicules
         </a>
+        <!-- Nouveau bouton contact -->
+        <a href="#contact" class="bg-green-500 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:bg-green-600 transition">
+          Contactez-nous
+        </a>
       </div>
-      <!-- Preuve sociale -->
     </div>
   </section>
 
-  <!-- Voitures avec carrousel -->
-<section id="cars" class="py-24 bg-gray-100 flex flex-col justify-center items-center text-center">
-  <h2 class="text-3xl font-bold mb-12 text-blue-700">Parc de véhicules</h2>
 
-<div class="swiper car-slider max-w-6xl w-full h-auto">
-    <div class="swiper-wrapper">
-      <!-- Slide 1 -->
-      <div class="swiper-slide">
-        <div class="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition ">
-          <img src="images/voiture_un.jpg" class="rounded-2xl w-full h-72 object-cover mb-4" alt="Renault Clio">
-          <h3 class="font-bold text-2xl text-blue-600">Renault Clio V</h3>
+<!-- Carrousel avec description -->
+<section id="cars" class="py-24 bg-gray-100">
+  <h2 class="text-3xl font-bold mb-12 text-blue-700 text-center">Parc de véhicules</h2>
+
+  <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 items-center px-4">
+    
+    <!-- Carrousel -->
+    <div class="md:col-span-2">
+      <div class="swiper car-slider">
+        <div class="swiper-wrapper">
+          
+          <!-- Slide 1 -->
+          <div class="swiper-slide" 
+               data-title="Renault Clio V" 
+               data-description="Compacte, économique et idéale pour l’apprentissage des élèves, la Clio V allie confort et praticité.">
+            <img src="images/clio.webp" alt="Renault Clio V">
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="swiper-slide" 
+               data-title="Peugeot 208" 
+               data-description="Citadine moderne et fiable, la 208 séduit par son design élégant et sa conduite agréable.">
+            <img src="images/peugeot.jpg" alt="Peugeot 208">
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="swiper-slide" 
+               data-title="Mini Cooper" 
+               data-description="Avec son style iconique et sa conduite dynamique, la Mini Cooper offre une expérience unique.">
+            <img src="images/mini.png" alt="Mini Cooper">
+          </div>
+
         </div>
-      </div>
-      <!-- Slide 2 -->
-      <div class="swiper-slide">
-        <div class="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition">
-          <img src="images/peugeot.jpg" class="rounded-2xl w-full h-72 object-cover mb-4" alt="Peugeot 208">
-          <h3 class="font-bold text-2xl text-blue-600">Peugeot 208</h3>
-        </div>
-      </div>
-      <!-- Slide 3 -->
-      <div class="swiper-slide">
-        <div class="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition">
-          <img src="images/mini.png" class="rounded-2xl w-full h-72 object-cover mb-4" alt="Citroën C3">
-          <h3 class="font-bold text-2xl text-blue-600">Mini Cooper</h3>
-        </div>
+
+        <!-- Pagination + navigation -->
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
       </div>
     </div>
 
-    <!-- Pagination + navigation -->
-    <div class="swiper-pagination !bottom-0 mt-6"></div>
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
+    <!-- Description (mise à jour par JS) -->
+    <div id="car-description" class="bg-white rounded-2xl shadow-lg p-6 text-left">
+      <h3 class="text-2xl font-bold text-blue-600 mb-3">Renault Clio V</h3>
+      <p class="text-gray-700">Compacte, économique et idéale pour l’apprentissage des élèves, la Clio V allie confort et praticité.</p>
+    </div>
   </div>
 </section>
 
 
-  <!-- À propos -->
-  <section id="about" class="py-24 flex flex-col justify-center items-center text-center">
-    <h2 class="text-3xl font-bold mb-6 text-blue-700">À propos</h2>
-    <div class="max-w-3xl mx-auto text-lg opacity-90 space-y-4">
-      <p>Chez <span class="font-semibold text-blue-700">Drive & Go Solutions</span>, nous proposons des solutions de location de véhicules adaptées à tous les professionnels en Île-de-France.</p>
-      <ul class="list-disc text-left pl-6 space-y-2">
-        <li><span class="font-semibold">Location courte durée :</span> une réponse immédiate pour vos besoins ponctuels ou urgents.</li>
-        <li><span class="font-semibold">Location longue durée / crédit-bail :</span> une solution flexible et économique pour sécuriser votre activité dans le temps.</li>
-        <li><span class="font-semibold">Service sur mesure :</span> flotte adaptée à vos besoins, y compris des véhicules à double commande pour les auto-écoles.</li>
-      </ul>
-      <p class="mt-4">Notre priorité est simple : vous fournir rapidement le véhicule qu’il vous faut, afin de garantir la continuité de votre activité, sans interruption.</p>
+
+
+<!-- À propos -->
+<section id="about" class="relative py-24 bg-gradient-to-br from-blue-50 via-white to-blue-100 overflow-hidden">
+  <!-- Décor en arrière-plan -->
+  <div class="absolute -top-10 -left-10 w-72 h-72 bg-blue-200 rounded-full blur-3xl opacity-20 -z-10"></div>
+  <div class="absolute bottom-0 right-0 w-80 h-80 bg-blue-300 rounded-full blur-3xl opacity-20 -z-10"></div>
+
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center px-4">
+    <!-- Image à gauche -->
+    <div class="relative">
+      <img src="images/parc.webp" alt="Nos véhicules" class="w-full max-w-2xl rounded-3xl shadow-2xl transform hover:scale-105 transition duration-700">
     </div>
-  </section>
+
+    <!-- Texte à droite -->
+    <div class="text-left space-y-6 animate-about">
+      <h2 class="text-4xl md:text-5xl font-extrabold text-blue-700 leading-tight">
+        Qui sommes-nous ?
+      </h2>
+      <p class="text-gray-700 text-lg leading-relaxed">
+        Chez <span class="font-semibold text-blue-700">Drive & Go Solutions</span>, nous proposons des solutions de location de véhicules adaptées à tous les professionnels en Île-de-France.
+      </p>
+
+      <ul class="space-y-3">
+        <li class="flex items-start gap-3">
+          <span class="text-blue-600 text-2xl"><i class="fas fa-clock"></i></span>
+          <span><strong>Location courte durée :</strong> une réponse immédiate pour vos besoins ponctuels ou urgents.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-blue-600 text-2xl"><i class="fas fa-calendar-check"></i></span>
+          <span><strong>Location longue durée / crédit-bail :</strong> une solution flexible et économique pour sécuriser votre activité.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-blue-600 text-2xl"><i class="fas fa-cogs"></i></span>
+          <span><strong>Service sur mesure :</strong> flotte adaptée à vos besoins, y compris des véhicules à double commande pour les auto-écoles.</span>
+        </li>
+      </ul>
+
+      <p class="text-gray-700 text-lg leading-relaxed">
+        Notre priorité : vous fournir rapidement le véhicule qu’il vous faut, pour garantir la continuité de votre activité.
+      </p>
+
+      <a href="#contact" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-blue-700 transition">
+        En savoir plus
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- Activité -->
 <section id="activity" class="relative py-24 bg-gradient-to-br from-blue-50 via-white to-blue-100 overflow-hidden">
   <!-- Décor en arrière-plan -->
@@ -235,10 +292,9 @@
   <section id="contact" class="py-24 flex flex-col justify-center items-center text-center bg-gray-50">
     <h2 class="text-3xl font-bold mb-12 text-blue-700">Contact</h2>
     <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 px-4 items-start">
-      <!-- Carte -->
-      <div id="map" class="rounded-2xl shadow h-72 "></div>
+      <div id="map" class="md:col-span-2 rounded-2xl shadow h-96 w-full relative z-0"></div>
       <!-- Infos -->
-      <div class="bg-white p-6 rounded-2xl shadow text-left space-y-6">
+        <div class="bg-white p-6 rounded-2xl shadow text-left space-y-6 mt-8">
         <h3 class="text-xl font-bold mb-4 text-blue-600 flex items-center gap-2 text-center">
           <i class="fas fa-info-circle"></i> Informations
         </h3>
@@ -255,33 +311,47 @@
           <a href="mailto:contact@dahalocation.com" class="text-blue-600 font-semibold">contact@dahalocation.com</a>
         </p>
       </div>
-      <!-- Horaires -->
-      <div class="bg-white p-6 rounded-2xl shadow text-left">
-        <h3 class="text-xl font-bold mb-4 text-blue-600 flex items-center gap-2 text-center">
-          <i class="fas fa-clock"></i> Horaires
-        </h3>
-        <ul class="space-y-2 opacity-80">
-          <li>Lundi : Fermé</li>
-          <li>Mardi : 10h-13h / 14h-18h</li>
-          <li>Mercredi : 10h-13h / 14h-18h</li>
-          <li>Jeudi : 10h-13h / 14h-18h</li>
-          <li>Vendredi : 10h-13h / 15h-18h</li>
-          <li>Samedi : 09h-12h / 13h-16h</li>
-        </ul>
-      </div>
+    
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-blue-600 text-white text-center py-6">
-    <div class="mt-4 text-sm opacity-80">
-      <p><strong>Mentions légales</strong></p>
-      <p>Drive &amp; Go Solutions – SARL au capital de 15 000 €</p>
-      <p>Immatriculée au RCS de Chartres – SIREN : 877 527 051</p>
-      <p>Agrément : E2502800020 – NDA : 24280187628</p>
+<footer class="bg-blue-600 text-white py-10">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 md:gap-4 gap-3 px-4 text-left md:divide-x md:divide-white/5">
+    <!-- Colonne Horaires -->
+    <div class="flex flex-col md:pl-10">
+      <h3 class="text-xl font-bold mb-3 flex items-center gap-2 text-gray-300">
+        <i class="fas fa-clock"></i> Horaires
+      </h3>
+      <ul class="space-y-1 text-gray-300 text-sm sm:text-base ml-4">
+        <li>Lundi : Fermé</li>
+        <li>Mardi : 10h-13h / 14h-18h</li>
+        <li>Mercredi : 10h-13h / 14h-18h</li>
+        <li>Jeudi : 10h-13h / 14h-18h</li>
+        <li>Vendredi : 10h-13h / 15h-18h</li>
+        <li>Samedi : 09h-12h / 13h-16h</li>
+      </ul>
     </div>
-    <p>&copy; 2025 Drive & Go Solutions - Tous droits réservés</p>
-  </footer>
+
+    <!-- Colonne Mentions légales -->
+    <div class="md:pl-10">
+      <h3 class="text-xl font-bold mb-3 text-gray-300">Mentions légales</h3>
+      <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
+        Drive &amp; Go Solutions – SARL au capital de 15 000 €<br>
+        Immatriculée au RCS de Chartres – SIREN : 877 527 051<br>
+        Agrément : E2502800020 – NDA : 24280187628
+      </p>
+    </div>
+  </div>
+
+  <!-- Copyright -->
+  <div class="text-center text-sm mt-6 text-gray-300">
+    &copy; 2025 Drive & Go Solutions - Tous droits réservés
+  </div>
+</footer>
+
+
+
 
   <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -297,31 +367,48 @@
   </script>
 
   <!-- Swiper JS -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-  <script>
-const swiper = new Swiper('.car-slider', {
-  loop: true,
-  grabCursor: true,
-  spaceBetween: 30,
-  slidesPerView: 1,
-  autoplay: { delay: 3000, disableOnInteraction: false },
-  pagination: { 
-    el: '.swiper-pagination', 
-    clickable: true, 
-    dynamicBullets: true 
-  },
-  navigation: { 
-    nextEl: '.swiper-button-next', 
-    prevEl: '.swiper-button-prev' 
-  },
-  effect: "fade",
-  fadeEffect: { crossFade: true },
-  breakpoints: {
-    768: { slidesPerView: 1 },
-    1024: { slidesPerView: 1 }
-  },
-});
 
+  <!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script>
+    // Initialisation du carrousel
+    const swiper = new Swiper('.car-slider', {
+      loop: true,
+      grabCursor: true,
+      spaceBetween: 30,
+      slidesPerView: 1,
+      autoplay: { delay: 3000, disableOnInteraction: false },
+      pagination: { el: '.swiper-pagination', clickable: true },
+      navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+    });
+
+    // Récupère la zone de description
+    const descBox = document.getElementById("car-description");
+    const titleEl = descBox.querySelector("h3");
+    const textEl = descBox.querySelector("p");
+
+    // Fonction pour mettre à jour la description
+    function updateDescription() {
+      const activeSlide = swiper.slides[swiper.activeIndex];
+      if (!activeSlide) return;
+
+      const title = activeSlide.getAttribute("data-title");
+      const description = activeSlide.getAttribute("data-description");
+
+      // Transition visuelle (fondu)
+      descBox.style.opacity = 0;
+      setTimeout(() => {
+        titleEl.textContent = title;
+        textEl.textContent = description;
+        descBox.style.opacity = 1;
+      }, 200);
+    }
+
+    // Mise à jour lors du changement de slide
+    swiper.on("slideChange", updateDescription);
+
+    // Initialise la description au chargement
+    updateDescription();
 
     // Effet scroll navbar
     window.addEventListener("scroll", function() {
