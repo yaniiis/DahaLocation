@@ -219,11 +219,11 @@ color: #1e3a8a !important; /* Bleu foncé */
   }
 }
 
-/* Carrousel - taille fixe et responsive */
+/* ===== SECTION CORRIGÉE ===== */
 /* Carrousel avec description */
 .car-slider {
   width: 100%;
-  height: 400px;
+  height: auto; /* MODIFIÉ: la hauteur n'est plus fixe */
   border-radius: 1rem;
   overflow: hidden;
   box-shadow: 0 6px 16px rgba(0,0,0,0.1);
@@ -231,7 +231,8 @@ color: #1e3a8a !important; /* Bleu foncé */
 
 .car-slider .swiper-slide img {
   width: 100%;
-  height: 100%;
+  height: auto; /* MODIFIÉ: la hauteur s'adapte à la largeur */
+  display: block; /* AJOUTÉ: évite les espaces superflus */
   object-fit: cover;
 }
 
@@ -243,9 +244,7 @@ color: #1e3a8a !important; /* Bleu foncé */
 
 /* Responsive */
 @media (max-width: 768px) {
-  .car-slider {
-    height: 250px;
-  }
+  /* La hauteur fixe a été enlevée, plus besoin de la surcharger ici */
   #cars .grid {
     grid-template-columns: 1fr; /* Carrousel au-dessus du texte */
   }
@@ -253,6 +252,7 @@ color: #1e3a8a !important; /* Bleu foncé */
     text-align: center;
   }
 }
+/* ===== FIN DE LA SECTION CORRIGÉE ===== */
 
 
 
