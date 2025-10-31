@@ -51,12 +51,15 @@ nav ul li a:hover {
   color: #00b4d8;
 }
 
-/* ===== SECTION CARROUSEL CORRIGÉE ===== */
-/* On cible la classe .swiper présente dans votre HTML */
+/* Carrousel */
+#carousel {
+  background: #f5f5f5;
+}
+
 .swiper {
   width: 80%;
   max-width: 900px;
-  height: auto; /* CORRECTION CLÉ : la hauteur n'est plus fixe */
+  height: 400px;
   margin: 30px auto;
   border-radius: 12px;
   overflow: hidden;
@@ -65,12 +68,9 @@ nav ul li a:hover {
 
 .swiper-slide img {
   width: 100%;
-  height: auto; /* CORRECTION CLÉ : la hauteur s'adapte à la largeur */
-  display: block; /* Empêche les marges indésirables */
+  height: 100%;
   object-fit: cover;
 }
-/* ===== FIN DE LA SECTION CORRIGÉE ===== */
-
 
 /* Contact */
 #contact {
@@ -139,44 +139,33 @@ footer {
   #map {
     height: 250px;
   }
+    .swiper {
+    height: auto !important; /* suit la hauteur du contenu */
+  }
 
-  /* La correction principale a été faite plus haut,
-     cette partie assure que le carrousel prend toute la largeur sur mobile */
-  .swiper {
-    width: 100%;
-    max-height: 300px;
+  .swiper-slide img {
+    height: auto; /* ajuste l'image à la largeur */
+    max-height: 300px; /* limite pour éviter que ça devienne trop grand */
   }
 
   .swiper-pagination {
-    margin-top: 10px !important;
-  }
-
-  #cars .grid {
-    grid-template-columns: 1fr;
-  }
-  #car-description {
-    text-align: center;
-    margin-top: 20px;
+    margin-top: 10px !important; /* rapproche les bullets du texte */
   }
 }
-
 .fade-in {
   opacity: 0;
   transform: translateY(30px);
   animation: fadeInUp 1s ease forwards;
 }
-
 @keyframes fadeInUp {
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
-
 .swiper-slide {
   transition: transform 0.5s ease, opacity 0.5s ease;
 }
-
 .swiper-slide:hover {
   transform: scale(1.05);
 }
@@ -188,19 +177,18 @@ footer {
 
 /* Navbar effet scroll */
 .navbar {
-  transition: all 0.3s ease;
-  background: transparent;
+transition: all 0.3s ease;
+background: transparent;
 }
 .navbar.scrolled {
-  backdrop-filter: blur(12px);
-  background: rgba(255, 255, 255, 0.7);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+backdrop-filter: blur(12px);
+background: rgba(255, 255, 255, 0.7);
+box-shadow: 0 2px 12px rgba(0,0,0,0.15);
 }
-.navbar.scrolled h1,
+.navbar.scrolled h1, 
 .navbar.scrolled a {
-  color: #1e3a8a !important; /* Bleu foncé */
+color: #1e3a8a !important; /* Bleu foncé */
 }
-
 /* Animation fade-up */
 .animate-fadeUp {
   animation: fadeUp 0.8s ease forwards;
@@ -231,10 +219,43 @@ footer {
   }
 }
 
+/* ===== SECTION CORRIGÉE ===== */
+/* Carrousel avec description */
+.car-slider {
+  width: 100%;
+  height: auto; /* MODIFIÉ: la hauteur n'est plus fixe */
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+
+.car-slider .swiper-slide img {
+  width: 100%;
+  height: auto; /* MODIFIÉ: la hauteur s'adapte à la largeur */
+  display: block; /* AJOUTÉ: évite les espaces superflus */
+  object-fit: cover;
+}
+
+/* Description */
 #car-description {
   transition: all 0.3s ease-in-out;
   min-height: 200px;
 }
+
+/* Responsive */
+@media (max-width: 768px) {
+  /* La hauteur fixe a été enlevée, plus besoin de la surcharger ici */
+  #cars .grid {
+    grid-template-columns: 1fr; /* Carrousel au-dessus du texte */
+  }
+  #car-description {
+    text-align: center;
+  }
+}
+/* ===== FIN DE LA SECTION CORRIGÉE ===== */
+
+
+
 
 /* Animation "fade-in + slide" pour la section À propos */
 .animate-about {
@@ -250,10 +271,10 @@ footer {
   }
 }
 
-/* Responsive ajustements pour la section "À propos" */
+/* Responsive ajustements */
 @media (max-width: 768px) {
   #about .grid {
-    grid-template-columns: 1fr; /* Superpose l'image et le texte sur mobile */
+    grid-template-columns: 1fr; /* stack image + texte sur mobile */
   }
 
   #about img {
