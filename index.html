@@ -5,13 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Drive & Go Solutions</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  <!-- Swiper CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
+  
+  <style>
+    /* Assure que le carrousel est bien centré et visible */
+    #cars .car-slider {
+      padding-top: 20px;
+      /* MODIFIÉ: Réduction du padding-bottom car il n'y a plus de pagination */
+      padding-bottom: 30px; 
+    }
 
-<script>
+    /* Styles pour l'effet de mise en avant */
+    .car-slider .swiper-slide {
+      transition: transform 0.4s ease, opacity 0.4s ease;
+      transform: scale(0.85); /* Réduire la taille des slides non actives */
+      opacity: 0.6; /* Rendre les slides non actives semi-transparentes */
+      height: auto; /* Permet à la carte de définir la hauteur */
+      display: flex;
+      justify-content: center;
+    }
+    
+    .car-slider .swiper-slide-active {
+      transform: scale(1); /* Taille normale pour la slide active */
+      opacity: 1; /* Opacité complète pour la slide active */
+      z-index: 10;
+    }
+
+    /* Assure que la carte à l'intérieur de la slide prend la hauteur */
+    .car-slider .swiper-slide .car-card {
+      height: 100%;
+    }
+  </style>
+  
+  <script>
     document.addEventListener('DOMContentLoaded', function() {
       // Toggle menu mobile
       const menuToggle = document.getElementById("menu-toggle");
@@ -40,17 +71,14 @@
 </head>
 <body class="font-sans bg-white text-gray-800">
 
-<!-- Navigation -->
 <nav class="navbar fixed w-full z-50">
   <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
   <img src="images/logo.png" alt="Logo" class="h-12 w-auto">
 
-    <!-- Bouton hamburger (mobile) -->
     <button id="menu-toggle" class="md:hidden text-white text-3xl focus:outline-none">
       <i class="fas fa-bars"></i>
     </button>
 
-    <!-- Menu desktop -->
     <ul class="hidden md:flex space-x-6">
       <li><a href="#home" class="hover:text-blue-400 transition text-white">Accueil</a></li>
       <li><a href="#cars" class="hover:text-blue-400 transition text-white">Parc</a></li>
@@ -60,7 +88,6 @@
     </ul>
   </div>
 
-  <!-- Menu mobile (caché par défaut) -->
   <div id="mobile-menu" class="hidden md:hidden bg-white text-blue-700 flex flex-col space-y-4 px-6 py-4 shadow-lg">
     <a href="#home" class="hover:text-blue-400">Accueil</a>
     <a href="#cars" class="hover:text-blue-400">Parc</a>
@@ -70,16 +97,13 @@
   </div>
 </nav>
 
-  <!-- Accueil -->
   <section id="home" class="relative h-screen flex flex-col justify-center items-center text-center text-white px-4">
 
-    <!-- Image de fond -->
     <div class="absolute inset-0">
       <img src="images/fond.jpg" alt="Voiture auto-école" class="w-full h-full object-cover">
       <div class="absolute inset-0 bg-black/60"></div>
     </div>
 
-    <!-- Contenu avec animation -->
     <div class="relative z-10 home-animate">
       <h2 class="text-4xl md:text-6xl font-bold mb-6 text-white">Location de Voitures pour Auto-Écoles</h2>
       <p class="max-w-2xl mx-auto mb-8 text-lg opacity-90 text-center" 
@@ -94,7 +118,6 @@
         <a href="#cars" class="bg-blue-600 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:bg-blue-700 transition">
           Voir nos véhicules
         </a>
-        <!-- Nouveau bouton contact -->
         <a href="#contact" class="bg-green-500 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:bg-green-600 transition">
           Contactez-nous
         </a>
@@ -103,71 +126,91 @@
   </section>
 
 
-<!-- Carrousel avec description -->
-<section id="cars" class="py-24 bg-gray-100">
+<section id="cars" class="py-24 bg-gray-100 relative">
   <h2 class="text-3xl font-bold mb-12 text-blue-700 text-center">Parc de véhicules</h2>
 
-  <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 items-center px-4">
+  <div class="max-w-6xl mx-auto relative px-4">
     
-    <!-- Carrousel -->
-    <div class="md:col-span-2">
-      <div class="swiper car-slider">
-        <div class="swiper-wrapper">
-          
-          <!-- Slide 1 -->
-          <div class="swiper-slide" 
-               data-title="Renault Clio V" 
-               data-description="Compacte, économique et idéale pour l’apprentissage des élèves, la Clio V allie confort et praticité.">
-            <img src="images/clio.webp" alt="Renault Clio V">
+    <div class="swiper car-slider">
+      
+      <div class="swiper-wrapper">
+        
+        <div class="swiper-slide">
+          <div class="car-card w-full max-w-sm bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col transform transition duration-300">
+            <img src="images/clio.webp" alt="Renault Clio V" class="w-full h-56 object-cover">
+            <div class="p-6 flex flex-col flex-grow">
+              <h3 class="text-2xl font-bold text-blue-700 mb-3">Renault Clio V</h3>
+              <p class="text-gray-700 flex-grow">Compacte, économique et idéale pour l’apprentissage des élèves, la Clio V allie confort et praticité.</p>
+            </div>
           </div>
-
-          <!-- Slide 2 -->
-          <div class="swiper-slide" 
-               data-title="Peugeot 208" 
-               data-description="Citadine moderne et fiable, la 208 séduit par son design élégant et sa conduite agréable.">
-            <img src="images/peugeot.jpg" alt="Peugeot 208">
-          </div>
-
-          <!-- Slide 3 -->
-          <div class="swiper-slide" 
-               data-title="Mini Cooper" 
-               data-description="Avec son style iconique et sa conduite dynamique, la Mini Cooper offre une expérience unique.">
-            <img src="images/mini.png" alt="Mini Cooper">
-          </div>
-
         </div>
 
-        <!-- Pagination + navigation -->
-        <div class="swiper-pagination"></div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-      </div>
-    </div>
+        <div class="swiper-slide">
+          <div class="car-card w-full max-w-sm bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col transform transition duration-300">
+            <img src="images/peugeot.jpg" alt="Peugeot 208" class="w-full h-56 object-cover">
+            <div class="p-6 flex flex-col flex-grow">
+              <h3 class="text-2xl font-bold text-blue-700 mb-3">Peugeot 208</h3>
+              <p class="text-gray-700 flex-grow">Citadine moderne et fiable, la 208 séduit par son design élégant et sa conduite agréable.</p>
+            </div>
+          </div>
+        </div>
 
-    <!-- Description (mise à jour par JS) -->
-    <div id="car-description" class="bg-white rounded-2xl shadow-lg p-6 text-left">
-      <h3 class="text-2xl font-bold text-blue-600 mb-3">Renault Clio V</h3>
-      <p class="text-gray-700">Compacte, économique et idéale pour l’apprentissage des élèves, la Clio V allie confort et praticité.</p>
-    </div>
-  </div>
+        <div class="swiper-slide">
+          <div class="car-card w-full max-w-sm bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col transform transition duration-300">
+            <img src="images/mini.png" alt="Mini Cooper" class="w-full h-56 object-cover">
+            <div class="p-6 flex flex-col flex-grow">
+              <h3 class="text-2xl font-bold text-blue-700 mb-3">Mini Cooper</h3>
+              <p class="text-gray-700 flex-grow">Avec son style iconique et sa conduite dynamique, la Mini Cooper offre une expérience unique.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="swiper-slide">
+          <div class="car-card w-full max-w-sm bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col transform transition duration-300">
+            <img src="images/clio.webp" alt="Renault Clio V" class="w-full h-56 object-cover">
+            <div class="p-6 flex flex-col flex-grow">
+              <h3 class="text-2xl font-bold text-blue-700 mb-3">Renault Clio V</h3>
+              <p class="text-gray-700 flex-grow">Compacte, économique et idéale pour l’apprentissage des élèves, la Clio V allie confort et praticité.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="car-card w-full max-w-sm bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col transform transition duration-300">
+            <img src="images/peugeot.jpg" alt="Peugeot 208" class="w-full h-56 object-cover">
+            <div class="p-6 flex flex-col flex-grow">
+              <h3 class="text-2xl font-bold text-blue-700 mb-3">Peugeot 208</h3>
+              <p class="text-gray-700 flex-grow">Citadine moderne et fiable, la 208 séduit par son design élégant et sa conduite agréable.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="car-card w-full max-w-sm bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col transform transition duration-300">
+            <img src="images/mini.png" alt="Mini Cooper" class="w-full h-56 object-cover">
+            <div class="p-6 flex flex-col flex-grow">
+              <h3 class="text-2xl font-bold text-blue-700 mb-3">Mini Cooper</h3>
+              <p class="text-gray-700 flex-grow">Avec son style iconique et sa conduite dynamique, la Mini Cooper offre une expérience unique.</p>
+            </div>
+          </div>
+        </div>
+
+      </div> <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+
+      </div> </div>
 </section>
 
 
-
-
-<!-- À propos -->
 <section id="about" class="relative py-24 bg-gradient-to-br from-blue-50 via-white to-blue-100 overflow-hidden">
-  <!-- Décor en arrière-plan -->
   <div class="absolute -top-10 -left-10 w-72 h-72 bg-blue-200 rounded-full blur-3xl opacity-20 -z-10"></div>
   <div class="absolute bottom-0 right-0 w-80 h-80 bg-blue-300 rounded-full blur-3xl opacity-20 -z-10"></div>
 
   <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center px-4">
-    <!-- Image à gauche -->
     <div class="relative">
       <img src="images/parc.webp" alt="Nos véhicules" class="w-full max-w-2xl rounded-3xl shadow-2xl transform hover:scale-105 transition duration-700">
     </div>
 
-    <!-- Texte à droite -->
     <div class="text-left space-y-6 animate-about">
       <h2 class="text-4xl md:text-5xl font-extrabold text-blue-700 leading-tight">
         Qui sommes-nous ?
@@ -202,9 +245,7 @@
   </div>
 </section>
 
-<!-- Activité -->
 <section id="activity" class="relative py-24 bg-gradient-to-br from-blue-50 via-white to-blue-100 overflow-hidden">
-  <!-- Décor en arrière-plan -->
   <div class="absolute top-0 left-0 w-64 h-64 bg-blue-200 rounded-full blur-3xl opacity-20 -z-10"></div>
   <div class="absolute bottom-0 right-0 w-72 h-72 bg-blue-300 rounded-full blur-3xl opacity-20 -z-10"></div>
 
@@ -214,7 +255,6 @@
     </h2>
 
     <div class="grid md:grid-cols-3 gap-12">
-      <!-- Spécialisation -->
       <div class="group relative bg-white p-10 rounded-3xl shadow-lg hover:shadow-2xl transition duration-500 transform hover:-translate-y-2">
         <div class="flex justify-center mb-6">
           <div class="p-4 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 text-white text-3xl shadow-lg group-hover:scale-110 transition">
@@ -225,7 +265,6 @@
         <p class="text-gray-700">Location de véhicules pour professionnels</p>
       </div>
 
-      <!-- Force -->
       <div class="group relative bg-white p-10 rounded-3xl shadow-lg hover:shadow-2xl transition duration-500 transform hover:-translate-y-2">
         <div class="flex justify-center mb-6">
           <div class="p-4 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 text-white text-3xl shadow-lg group-hover:scale-110 transition">
@@ -236,7 +275,6 @@
         <p class="text-gray-700">Disponibilité immédiate, sans délai</p>
       </div>
 
-      <!-- Formules -->
       <div class="group relative bg-white p-10 rounded-3xl shadow-lg hover:shadow-2xl transition duration-500 transform hover:-translate-y-2">
         <div class="flex justify-center mb-6">
           <div class="p-4 rounded-full bg-gradient-to-br from-green-400 to-emerald-600 text-white text-3xl shadow-lg group-hover:scale-110 transition">
@@ -253,33 +291,28 @@
   </div>
 </section>
 
-<!-- Services -->
 <section id="services" class="py-24 bg-gray-100 flex flex-col justify-center items-center text-center">
   <h2 class="text-3xl font-bold mb-12 text-blue-700">Nos Services inclus</h2>
   <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto px-4">
         
-    <!-- Service 1 -->
     <div class="service-card bg-white p-8 rounded-2xl shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl">
       <i class="fas fa-shield-alt text-blue-600 text-4xl mb-4"></i>
       <h3 class="font-bold text-xl mb-3 text-blue-600">Assurance</h3>
       <p class="opacity-80">Protégez votre véhicule en toute sérénité.</p>
     </div>
 
-    <!-- Service 2 -->
     <div class="service-card bg-white p-8 rounded-2xl shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl">
       <i class="fas fa-tools text-blue-600 text-4xl mb-4"></i>
       <h3 class="font-bold text-xl mb-3 text-blue-600">Entretien</h3>
       <p class="opacity-80">Gardez votre voiture en parfait état.</p>
     </div>
 
-    <!-- Service 3 -->
     <div class="service-card bg-white p-8 rounded-2xl shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl">
       <i class="fas fa-car-crash text-blue-600 text-4xl mb-4"></i>
       <h3 class="font-bold text-xl mb-3 text-blue-600">Assistance</h3>
       <p class="opacity-80">Aide rapide en cas de panne ou d’accident.</p>
     </div>
 
-    <!-- Service 4 -->
     <div class="service-card bg-white p-8 rounded-2xl shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl">
       <i class="fas fa-bolt text-blue-600 text-4xl mb-4"></i>
       <h3 class="font-bold text-xl mb-3 text-blue-600">Réactivité</h3>
@@ -291,13 +324,11 @@
 </section>
 
 
-  <!-- Contact -->
   <section id="contact" class="py-24 flex flex-col justify-center items-center text-center bg-gray-50">
     <h2 class="text-3xl font-bold mb-12 text-blue-700">Contact</h2>
     <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 px-4 items-start">
       <div id="map" class="md:col-span-2 rounded-2xl shadow h-96 w-full relative z-0"></div>
-      <!-- Infos -->
-        <div class="bg-white p-6 rounded-2xl shadow text-left space-y-6 mt-8">
+      <div class="bg-white p-6 rounded-2xl shadow text-left space-y-6 mt-8">
         <h3 class="text-xl font-bold mb-4 text-blue-600 flex items-center gap-2 text-center">
           <i class="fas fa-info-circle"></i> Informations
         </h3>
@@ -310,7 +341,7 @@
           <a href="tel:+33123456789" class="text-blue-600 font-semibold">+33 1 23 45 67 89</a>
         </p>
         <p class="flex items-center gap-3">
-          <i class="fas fa-envelope text-blue-600 text-xl"></i>
+          <i class="fas fa-envelope text-blue-600 font-semibold"></i>
           <a href="mailto:contact@dahalocation.com" class="text-blue-600 font-semibold">contact@dahalocation.com</a>
         </p>
       </div>
@@ -318,10 +349,8 @@
     </div>
   </section>
 
-  <!-- Footer -->
-<footer class="bg-blue-600 text-white py-10">
+  <footer class="bg-blue-600 text-white py-10">
   <div class="max-w-6xl mx-auto grid md:grid-cols-2 md:gap-4 gap-3 px-4 text-left md:divide-x md:divide-white/5">
-    <!-- Colonne Horaires -->
     <div class="flex flex-col md:pl-10">
       <h3 class="text-xl font-bold mb-3 flex items-center gap-2 text-gray-300">
         <i class="fas fa-clock"></i> Horaires
@@ -336,7 +365,6 @@
       </ul>
     </div>
 
-    <!-- Colonne Mentions légales -->
     <div class="md:pl-10">
       <h3 class="text-xl font-bold mb-3 text-gray-300">Mentions légales</h3>
       <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
@@ -347,16 +375,14 @@
     </div>
   </div>
 
-  <!-- Copyright -->
   <div class="text-center text-sm mt-6 text-gray-300">
     &copy; 2025 Drive & Go Solutions - Tous droits réservés
   </div>
 </footer>
 
 
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-
-  <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script>
     var map = L.map('map').setView([48.890251, 2.324196], 10);
@@ -369,55 +395,47 @@
       .openPopup();
   </script>
 
-  <!-- Swiper JS -->
-
-  <!-- Swiper JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-<script>
-    // Initialisation du carrousel
-    const swiper = new Swiper('.car-slider', {
-      loop: true,
-      grabCursor: true,
-      spaceBetween: 30,
-      slidesPerView: 1,
-      autoplay: { delay: 3000, disableOnInteraction: false },
-      pagination: { el: '.swiper-pagination', clickable: true },
-      navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-    });
-
-    // Récupère la zone de description
-    const descBox = document.getElementById("car-description");
-    const titleEl = descBox.querySelector("h3");
-    const textEl = descBox.querySelector("p");
-
-    // Fonction pour mettre à jour la description
-    function updateDescription() {
-      const activeSlide = swiper.slides[swiper.activeIndex];
-      if (!activeSlide) return;
-
-      const title = activeSlide.getAttribute("data-title");
-      const description = activeSlide.getAttribute("data-description");
-
-      // Transition visuelle (fondu)
-      descBox.style.opacity = 0;
-      setTimeout(() => {
-        titleEl.textContent = title;
-        textEl.textContent = description;
-        descBox.style.opacity = 1;
-      }, 200);
-    }
-
-    // Mise à jour lors du changement de slide
-    swiper.on("slideChange", updateDescription);
-
-    // Initialise la description au chargement
-    updateDescription();
-
+  <script>
     // Effet scroll navbar
     window.addEventListener("scroll", function() {
       const nav = document.querySelector(".navbar");
       nav.classList.toggle("scrolled", window.scrollY > 50);
     });
+
+    // --- Initialisation de Swiper.js (MODIFIÉE) ---
+    document.addEventListener('DOMContentLoaded', function() {
+      const swiper = new Swiper('.car-slider', {
+        // Active le défilement infini
+        loop: true,
+        
+        // Centre la diapositive active
+        centeredSlides: true,
+        
+        // Nombre de slides visibles
+        slidesPerView: 1, // 1 slide sur mobile ET tablette
+        
+        spaceBetween: 20, // Espace entre les slides
+
+        // Points de rupture pour le responsive
+        breakpoints: {
+          // A partir de 1024px (ordinateurs)
+          1024: {
+            slidesPerView: 3, // 3 slides visibles sur grand écran
+            spaceBetween: 40
+          }
+        },
+
+        // Ajoute les flèches de navigation
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+
+        // SUPPRIMÉ: L'objet pagination a été retiré
+        
+      });
+    });
+    // --- FIN DU SCRIPT SWIPER ---
   </script>
 </body>
 </html>
